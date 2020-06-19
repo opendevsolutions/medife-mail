@@ -1,0 +1,25 @@
+
+<configuration>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="me.jclagache.data.mybatis" level="INFO"/>
+
+    <logger name="org.apache.ibatis" level="INFO"/>
+    <logger name="org.mybatis.spring" level="INFO"/>
+
+    <logger name="java.sql" level="INFO">
+        <appender-ref ref="stdout"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+    </root>
+
+</configuration>
