@@ -1,0 +1,3 @@
+runCDtoProdPipeline(application: env.APP_NAME,
+              agent: "maven",
+              artifactsDir: "./target")
