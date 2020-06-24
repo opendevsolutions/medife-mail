@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: comunes-api-config-template
+  name: comunes-email-api-config-template
 objects:
 parameters:
 - description: Application Name
   displayName: Application Name
   name: APP_NAME
   required: true
-  value: comunes-api
+  value: comunes-email-api

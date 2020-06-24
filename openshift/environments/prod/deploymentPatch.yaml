@@ -3,7 +3,7 @@ spec:
   template:
     spec:
       containers:
-      - name: comunes-api
+      - name: comunes-email-api
         resources:
           limits:
             cpu: 500m
