@@ -21,7 +21,6 @@ import org.springframework.web.context.request.WebRequest;
 
 import ar.com.opendevsolutions.commons.exception.ValidationException;
 import ar.com.opendevsolutions.commons.service.EmailService;
-import ar.com.opendevsolutions.commons.service.EmailType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -83,10 +82,9 @@ public class EmailRest {
                            @PathVariable(value = "from") String remitente,
                            @PathVariable(value = "to") String destinatario,
                            @PathVariable(value = "pid") String instanciaProceso,
-                           @RequestParam(value = "tipo", required = false) EmailType tipoMail,
                            @RequestParam(value = "tarea", required = false) String tarea,
                            @RequestBody(required = false) Map<String,Object> contenido) throws MessagingException, IOException {
-        this.commonsService.enviarMail(tipoMail, usuario, remitente.toLowerCase(),  destinatario.toLowerCase(), instanciaProceso, contenido, tarea);
+        this.commonsService.enviarMail(usuario, remitente.toLowerCase(),  destinatario.toLowerCase(), instanciaProceso, contenido, tarea);
     }
 
     @ApiOperation(value = "Enviar Mail utilizando el from por default")
@@ -100,10 +98,9 @@ public class EmailRest {
     public void enviarMailDefaultFrom(@PathVariable(value = "user") String usuario,
                            @PathVariable(value = "to") String destinatario,
                            @PathVariable(value = "pid") String instanciaProceso,
-                           @RequestParam(value = "tipo", required = false) EmailType tipoMail,
-                                      @RequestParam(value = "tarea", required = false) String tarea,
+                           @RequestParam(value = "tarea", required = false) String tarea,
                            @RequestBody(required = false) Map<String,Object> contenido) throws MessagingException, IOException {
-        this.commonsService.enviarMail(tipoMail, usuario, null, destinatario.toLowerCase(), instanciaProceso, contenido, tarea);
+        this.commonsService.enviarMail(usuario, null, destinatario.toLowerCase(), instanciaProceso, contenido, tarea);
     }
 
 }

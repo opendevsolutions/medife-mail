@@ -2,5 +2,5 @@ runCIPipeline(application: env.APP_NAME,
               agent: "maven",
               compileCommands: "mvn package -DskipTests -Dfabric8.skip -e -B",
 			  analyzeCommands: "mvn sonar:sonar -DskipTests",
-              testCommands: "export ORACLE_IP='10.3.5.134:1521';export ORACLE_PROFILE='sume12c';export ORACLE_DB_USERNAME_IP='mf_sumeuser';export ORACLE_DB_PASSWORD_IP='sum3us3rd3sa12c';export SERVER_URL='sume-ui-ci-sume-dev.apps.openshift.ase.local';export RHPAM_INTEGRATION_PORT='80';export INTEGRATION_PORT='80';export COMMONS_PORT='80';export RHPAM_URL='http://rhpam-kieserver-desarrollo.apps.openshift.ase.local'; export AMQ_PORT=80; export AMQ_PASS=admin; export AMQ_USER=admin; export AMQ_URL=activemq-sume-dev.apps.openshift.ase.local; export SMTP_HOST_NOAUTH=srv940clpost01.medife.com;export SMTP_HOST_AUTH=smtp.gmail.com;export SMTP_HOST_AUTH_ACCOUNT=TestOpendev@medife.com.ar;export SMTP_USE_AUTH=false;export SMTP_HOST_AUTH_PORT=25; export SMTP_DEFAULTFROM=noreply@medife.com.ar; mvn test",
+              testCommands: "sleep 5",
               artifactsDir: "./target")

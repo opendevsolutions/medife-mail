@@ -63,12 +63,12 @@ public class EmailService {
         this.restTemplate = new RestTemplate();
     }
 
-    public void enviarMail(EmailType tipoMail, String usuario, String remitente,
+    public void enviarMail(String usuario, String remitente,
                            String destinatario, String instanciaProceso, Map<String, Object> contenido, String tarea ) throws MessagingException, IOException {
 
         if( destinatario != null && !destinatario.isEmpty() && !destinatario.toLowerCase().equals("null") && !destinatario.toLowerCase().equals("undefined")) {
             EmailStructure message = new EmailStructure();
-            construirMail(tipoMail, usuario, Optional.ofNullable(remitente).orElse(defaultFrom), destinatario, instanciaProceso, contenido, tarea, message);
+            construirMail(usuario, Optional.ofNullable(remitente).orElse(defaultFrom), destinatario, instanciaProceso, contenido, tarea, message);
             if (useAuthentication){
                 sendAuthenticatedEmail(usuario, remitente, destinatario, message);
             } else {
@@ -105,11 +105,10 @@ public class EmailService {
         mailer.sendMail(email);
     }
 
-    private void construirMail(EmailType tipoMail,
-                               String usuario, String remitente, String destinatario,
+    private void construirMail(String usuario, String remitente, String destinatario,
                                String instanciaProceso, Map<String, Object> contenido, String tarea,
                                EmailStructure message) throws MessagingException {
-        MailNotificacion mailNotificacion = (tipoMail==null)? new MailNotificacion():tipoMail.getMailNotificacion();
+        MailNotificacion mailNotificacion = new MailNotificacion();
         mailNotificacion.setearValores(usuario, instanciaProceso, remitente, destinatario, message, contenido, tarea, mailAccountAuth);
         mailNotificacion.construirMail(message, remitente, destinatario, mailNotificacion.obtenerTituloMail(), mailNotificacion.construirBody());
     }
